@@ -1,0 +1,991 @@
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Aeonik:wght@400;500;700&display=swap');
+
+  /* Apply Aeonik font to headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Aeonik', sans-serif;
+  }
+
+  /* Apply Inter font to paragraphs */
+  body, p, input, label, button {
+    font-family: 'Inter', sans-serif;
+    font-size:  8px;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: #6B7280; /* text-gray-500 */
+  }
+
+  /* Tamanho base para dispositivos menores */
+  body {
+    font-size: 8px; /* text-xs */
+  }
+
+  /* Tamanho para dispositivos pequenos (sm) */
+  @media (min-width: 640px) {
+    body {
+      font-size: 8px; /* text-sm */
+    }
+  }
+
+  /* Tamanho para dispositivos médios (md) */
+  @media (min-width: 768px) {
+    body {
+      font-size: 10px; /* text-base */
+    }
+  }
+
+  @media (min-width: 769px) {
+    .custom-card {
+      margin: 0 20px; /* Margem maior para telas grandes */
+    }
+
+    .custom-card-body {
+      padding: 2rem; /* Padding maior para telas grandes */
+    }
+
+    .sutitulo-text,
+    .sutitulo-desc {
+      font-size: 18px; /* Tamanho da fonte para telas grandes */
+    }
+
+    .total-word {
+      font-size: 16px; /* Tamanho da fonte para telas grandes */
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+
+  /* Tamanho para dispositivos grandes (lg) */
+  @media (min-width: 1024px) {
+    body {
+      font-size: 10px; /* text-lg */
+    }
+  }
+
+  /* Tamanho para dispositivos extra grandes (xl) */
+  @media (min-width: 1280px) {
+    body {
+      font-size: 10px; /* text-xl */
+    }
+  }
+
+  /* Configuração do body para flex layout e ocupar a altura total da tela */
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Estilo do header */
+  header {
+    background-color: white;
+    width: 100%;
+  }
+
+  footer {
+    background-color: #d5d6da;
+    padding: 2px 4px; /* Ajuste para um padding menor */
+    text-align: center;
+    margin-top: 0; /* Remove margem superior */
+    color: black;
+  }
+
+  /* Main deve ocupar o espaço restante e centralizar o conteúdo */
+  main {
+    flex-grow: 1; /* Faz o main ocupar o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Container para centralizar o conteúdo com limite de largura */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Estilo do nav (barra de navegação) */
+  nav {
+    display: flex;
+    justify-content: space-between; /* Alinha logo à esquerda e controles à direita */
+    align-items: center;
+    padding: 4px 4px;
+    
+  }
+
+  /* Estilo da imagem no nav */
+  nav img {
+    object-fit: contain;
+  }
+
+  /* Controles de wallet (MetaMask e botões) */
+  nav .wallet-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Estilo padrão para botões */
+  button {
+    padding: 6px 12px;
+    background-color: black;
+    color: white;
+    border-radius: 6px; /* Borda arredondada */
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover para botões */
+  button:hover {
+    background-color: #333; /* Cor mais clara ao passar o mouse */
+  }
+
+  /* Remover outline ao focar */
+  button:focus {
+    outline: none;
+  }
+
+  /* Estilo específico para o botão de logout */
+  .logout-button {
+    background-color: #7d0b0b; /* Cor para o botão de logout */
+  }
+
+  /* Hover para o botão de logout */
+  .logout-button:hover {
+    background-color: #5a0606; /* Cor mais clara ao passar o mouse */
+  }
+
+  /* Ajuste de texto para links */
+  nav a {
+    color: #555;
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  /* Hover para links */
+  nav a:hover {
+    color: #000; /* Cor mais escura ao passar o mouse */
+  }
+
+
+ 
+
+
+  /* --------------------------------------diego-------------------------------------------- */
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around; /* Distribui os cards uniformemente */
+  }
+
+    
+    
+    .container.mt-4 {
+      min-height: 20vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; 
+    }
+    
+    
+    .progress-circle {
+              width: 120px;
+              height: 120px;
+              position: relative;
+              background-color: #ddd;
+              border-radius: 50%;
+              margin: 0 auto;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 20px;
+              font-weight: bold;
+          }
+    
+          .ms-auto {
+              margin-left: auto !important;
+          }
+    
+          .me-2 {
+              margin-right: .60rem !important;
+          }
+    
+          .me-3{
+              font-family: "Urbanist", sans-serif;
+    
+          }
+    
+          .btn-outline-success {
+              --bs-btn-color: #2E3AFF;
+              --bs-btn-border-color: #2E3AFF;
+              --bs-btn-hover-color: #fff;
+              --bs-btn-hover-bg: #2E3AFF;
+              --bs-btn-hover-border-color: #2E3AFF;
+              --bs-btn-focus-shadow-rgb: 25, 135, 84;
+              --bs-btn-active-color: #fff;
+              --bs-btn-active-bg: #17086f;
+              --bs-btn-active-border-color: #2E3AFF;
+              --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+              --bs-btn-disabled-color: #2E3AFF;
+              --bs-btn-disabled-bg: transparent;
+              --bs-btn-disabled-border-color: #2E3AFF;
+              --bs-gradient: none;
+              border-radius: 18px;
+              margin-right: 50px;
+              
+          }
+    
+    
+      
+      .custom-card {
+          width: 30rem; 
+          height: 30rem;
+          border: none;
+          border-radius: 0.25rem; 
+          box-shadow: 1px 3px 5px 1px rgba(58, 58, 58, 0.327);
+          margin-top: 20px;
+      
+      }
+    
+      .centralizar-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Garante que ocupe a altura completa da tela */
+      }
+      
+      .custom-card2 {
+        width: 30rem;
+        height: 50rem;
+        border: none;
+        border-radius: 0.25rem;
+        box-shadow: 1px 3px 5px 1px rgba(58, 58, 58, 0.327);
+        margin-top: 20px;
+      }
+    
+    
+      
+    
+    
+    .titulo-text .subtitulo-text{
+      font-family: "Urbanist", sans-serif;
+    }
+    .titulo-text{
+      font-size: 36px;
+      font-weight: 600; 
+    }
+    .subtitulo-text{
+    
+      font-size: 20px; 
+    }
+    
+      .custom-card-title{
+    font-size: 22px;
+          font-family: "Urbanist", sans-serif;
+          font-weight: 600;
+      }
+    
+    
+      .custom-card-text{
+    
+          font-size: 28px;
+          font-family: "Urbanist", sans-serif;
+          font-weight: bold;
+    
+      }
+    
+    
+      .total-word{
+          font-size: 14px;
+          font-family: "Urbanist", sans-serif;
+          font-weight: regular;
+          color: #9f9d9d;
+    
+    
+      }
+    
+    
+      .custom-progress{
+    
+    margin-top: 70px;
+    
+      }
+    
+      .custom-button {
+          background-color: #2E3AFF !important; 
+          color: #ffffff !important; 
+          border: 2px solid #2E3AFF !important;
+          border-radius: 50px !important; 
+          padding: 10px 20px !important; 
+          font-size: 16px !important; 
+          text-decoration: none !important; 
+          align-items: center !important;
+          margin-top: 50px !important;
+          font-family: "Urbanist", sans-serif;
+          display: block; 
+          font-weight: bold;
+          margin: 0 auto; 
+          }
+    
+      .custom-button:hover{
+          
+              background-color: #17086f !important;
+              color: white !important;
+              border: 2px solid #17086f !important;
+      } 
+    
+    
+      .custom-button2 {
+          background-color: #ffffff !important;
+          color:  #2E3AFF !important; 
+          border: 2px solid #2E3AFF !important;
+          border-radius: 50px !important; 
+          padding: 10px 20px !important; 
+          font-size: 16px !important; 
+          text-decoration: none !important; 
+          align-items: center !important;
+          margin-top: 50px !important;
+          font-family: "Urbanist", sans-serif;
+          display: block; 
+          font-weight: bold;
+          margin: 0 auto; 
+      }
+    
+      .custom-button2:hover {
+          background-color: #2E3AFF !important;
+          color:  #ffffff !important;
+          border: 2px solid #2E3AFF !important;
+      }
+      
+    
+      .barraP {
+        margin: auto;
+        margin-top: -20px;
+        width: 100%; /* Ajuste para ocupar toda a largura disponível */
+        max-width: 293px; /* Largura máxima para telas maiores */
+        height: 92px;
+        border-radius: 18px;
+        background-color: #F3F4FF;
+        box-shadow: 1px 2px 2px 0px rgba(58, 58, 58, 0.327);
+    }
+    
+    /* Ajustes para telas menores */
+    @media (max-width: 768px) {
+        .barraP {
+            width: 80%; /* Ajusta a largura para telas pequenas */
+            height: 83px; /* Ajusta a altura */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .barraP {
+            width: 100%; /* Ocupa toda a largura da tela */
+            height: 80px; /* Altura reduzida */
+            border-radius: 10px; /* Bordas menores */
+        }
+    }
+    
+    
+      .acima {
+          display: flex;
+          justify-content: space-between; 
+          align-items: center;
+          margin: auto;
+      }
+    
+      .porcentagem{
+    
+    text-align: center;
+    
+      }
+      .faltapravc{
+    text-align: center;
+    
+      }
+    
+    
+      .dados .quantotem,
+      .dados .quantofalta,
+      .dados .faltapravc {
+          font-size: 16px;
+          font-family: "Urbanist", sans-serif;
+      }
+    
+      .dados .quantotem,
+      .dados .quantofalta{
+    
+    margin-right: 15px;
+    margin-left: 15px;
+      }
+    
+      .quantotem{
+    color: #2E3AFF;
+    font-weight: bold;
+    
+      }
+    
+            .dados .porcentagem{
+              font-family: "Urbanist", sans-serif;
+    font-size: 25px;
+    
+              }
+    
+              .faltapravc{
+    
+    margin-bottom: 20px;
+    
+              }
+    
+    
+    
+            /* .pure, .svg{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 150px 20px;
+    
+    
+            } */
+    
+    .barrinha{
+    
+      margin-top: 20px;
+    
+    }
+    
+    
+    .gauge {
+      width: 100%; /* Faz o gauge ocupar 100% da largura do contêiner pai */
+      max-width: 250px; /* Limita a largura máxima do gauge */
+      font-family: "Roboto", sans-serif;
+      font-size: 32px;
+      color: #2E3AFF;
+      margin: 20px auto; /* Centraliza horizontalmente e adiciona uma margem vertical */
+      display: flex; /* Usa flexbox para centralizar o conteúdo interno */
+      justify-content: center; /* Centraliza horizontalmente o conteúdo interno */
+      align-items: center; /* Centraliza verticalmente o conteúdo interno */
+      
+  }
+  
+            
+            .gauge__body {
+              width: 100%;
+              height: 0;
+              padding-bottom: 50%;
+              background: #D5D8FF;
+              position: relative;
+              border-top-left-radius: 50% 100%;
+              border-top-right-radius: 50% 100%;
+              overflow: hidden;
+            }
+            
+            .gauge__fill {
+              position: absolute;
+              top: 100%;
+              left: 0;
+              width: inherit;
+              height: 100%;
+              background: #2E3AFF;
+              transform-origin: center top;
+              transform: rotate(0.25turn);
+              transition: transform 0.2s ease-out;
+            }
+            
+            .gauge__cover {
+              width: 75%;
+              height: 150%;
+              background: #ffffff;
+              border-radius: 50%;
+              position: absolute;
+              top: 25%;
+              left: 50%;
+              transform: translateX(-50%);
+            
+              /* Text */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding-bottom: 25%;
+              box-sizing: border-box;
+            }
+            
+    
+            .icon{
+    
+              width: 30px; /* Defina o novo tamanho desejado */
+              height: 30px; /* Defina o novo tamanho desejado */
+    position: absolute;
+    top: 250px;
+            }
+
+    .alert{
+    margin-top: 15px;
+    margin-left: -10px;
+    }
+    
+    
+    
+            .intro-token{
+    
+              font-family: "Urbanist", sans-serif;
+              font-size: 18;
+    color: #BBBBBB;
+    
+    margin-left: 80px;
+    text-decoration: none;
+            }
+    
+            .token-text{
+    
+              font-family: "Urbanist", sans-serif;
+              font-size: 34px;
+              margin-left: 80px;
+            }
+    
+            .token-text span{
+    
+              font-weight: bold;
+            }
+    
+    
+            .card.custom-card.tokkencard{
+    
+              width: 17rem; 
+              height: 18rem;
+              margin-right: 20px;
+    
+            }
+    
+            .tokkencard .card-body {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+          }
+          
+          .tokkencard .tokennu,
+          .tokkencard .valorreais {
+              font-family: "Urbanist", sans-serif;
+              font-size: 34px;
+              margin: auto;
+              text-align: center;
+          }
+          
+          .tokkencard .valorreais {
+              font-weight: bolder;
+          }
+    
+    
+          .card.custom-card.tokkencard.last{
+    background-color:transparent;
+    border: 1px solid #2E3AFF;
+    
+            }
+    
+            .simular{
+              font-family: "Urbanist", sans-serif;
+    font-size: 34px;
+            
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+              text-align: center;
+              color: #2E3AFF;
+              font-weight: bold;
+    }
+    
+    
+    
+    
+    /* //PÁGINA INTRO SONIA */
+    
+    .custom-card3 {
+      width: 30rem;
+      height: 20rem;
+      border: none;
+      border-radius: 0.25rem;
+      box-shadow: 1px 3px 5px rgba(58, 58, 58, 0.327);
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .tokenintro {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px; 
+      text-align: center;
+    }
+    
+  /* MENU */
+.menuitem {
+  font-size: 13px;
+  padding-top: 20px;
+  transition: color 0.3s; 
+  
+}
+
+.menuitem:hover {
+  color: #2E3AFF; /* Cor ao passar o mouse */
+}
+
+.navintro {
+  background-color: rgba(46, 56, 255, 0.2); /* Cor de fundo com transparência */
+  height: 40px;
+}
+
+/* Estilo adicional para responsividade */
+@media (max-width: 768px) {
+  .menuitem {
+    font-size: 12px; /* Ajuste do tamanho da fonte em telas menores */
+    padding-top: 10px; /* Ajuste do padding em telas menores */
+  }
+
+  .navintro {
+    background-color: rgba(46, 56, 255, 0.2); /* Cor de fundo com transparência */
+    height: 30%;
+  }
+  
+
+}
+
+.boxnav{
+margin-top: 10px;
+
+}
+
+    /* PÁGINA IMÓVEL */
+  .nomes{
+
+    font-size: 20px;
+  }
+    .detalhes {
+
+      font-size: 15px;
+    }
+
+
+    .font-bold.text-left{
+
+      font-size: 15px;
+    }
+
+    .item{
+  font-size: 14px;
+
+    }
+
+    .firmezahi{
+
+      font-size: 20px;
+    }
+
+
+    .col-span-1 .bg-white .rounded-lg .shadow-md .p-4 .self-start .p{
+
+
+      font-size: 30px;
+    }
+
+.custom-class-property img{}
+
+.custom-class-property b, .segundacaixa b{
+  color:  rgba(97, 105, 251, 0.968);
+
+}
+    .custom-class-property p {
+   
+  
+      font-size: 1.25rem; /* Tamanho do texto */
+    color:  rgba(16, 22, 128, 0.814);
+    /* Verde */
+    font-weight: bold;  /* Negrito */
+
+    text-transform: capitalize;
+  
+  }
+
+  .custom-class-property span {
+   
+  
+    font-size: 15px; /* Tamanho do texto */
+    color: rgba(8, 10, 46, 0.968);
+
+
+  
+
+}
+
+  
+  .custom-class-property  {
+   
+    background-color: #ffffff; /* Cor de fundo personalizada */
+    border-radius: 0.375rem; /* 6px */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra personalizada */
+    padding: 1.5rem; /* 24px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem; /* 16px */
+  
+
+}
+.segundacaixa{
+
+  font-size: 15px;
+
+}
+
+.segundacaixa span{
+  font-size: 18px;
+  color: rgba(8, 10, 46, 0.968);
+
+
+}
+
+.terceiracaixa p{
+
+  font-size: 17px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .custom-class-property {
+    padding: 1rem; /* Reduz o padding */
+  }
+
+  .custom-class-property p {
+    font-size: 1rem; /* Ajusta o tamanho do texto */
+  }
+
+  
+  .custom-class-property span {
+   
+  
+    font-size: 9px; /* Tamanho do texto */
+  color: #2c2c2c;     /* Verde */
+ 
+
+
+
+}
+.segundacaixa{
+
+  font-size: 10px;
+  text-transform: capitalize;
+}
+
+.custom-class-property img{
+padding-right: 20px;
+  width: 300px
+}
+}
+
+@media (max-width: 768px) {
+  .nomes {
+    font-size: 18px;
+  }
+
+  .detalhes,
+  .font-bold.text-left {
+    font-size: 13px;
+  }
+
+  .item {
+    font-size: 12px;
+  }
+
+  .firmezahi {
+    font-size: 18px;
+  }
+
+  .col-span-1 .bg-white .rounded-lg .shadow-md .p-4 .self-start .p {
+    font-size: 24px; /* Reduz o tamanho do texto */
+  }
+
+  .custom-class-property {
+    padding: 0.75rem; /* Reduz mais o padding */
+  }
+
+  .custom-class-property p {
+    font-size: 0.875rem; /* Reduz o tamanho do texto */
+  }
+
+  .custom-class-property p {
+    font-size: 1rem; /* Ajusta o tamanho do texto */
+  }
+
+  
+  .custom-class-property span {
+   
+  
+    font-size: 14px; /* Tamanho do texto */
+  color: rgba(8, 10, 46, 0.968);
+
+  
+
+}
+.segundacaixa{
+
+  font-size: 11px;
+
+}
+}
+
+@media (max-width: 480px) {
+  .custom-class-property {
+    padding: 0.5rem; /* Ainda menos padding */
+    margin-bottom: 0.5rem; /* Menor margem */
+  }
+
+  .custom-class-property p {
+    font-size: 0.75rem; /* Tamanho do texto pequeno */
+  }
+
+  .nomes,
+  .firmezahi {
+    font-size: 16px;
+  }
+
+  .detalhes,
+  .font-bold.text-left,
+  .item {
+    font-size: 12px;
+  }
+
+  .custom-class-property span {
+   
+  
+    font-size: 9px; /* Tamanho do texto */
+  color: rgba(8, 10, 46, 0.968);
+
+  
+
+}
+.segundacaixa span{
+font-size: 10px;
+}
+
+
+}
+ /* ------------qrcode---------------   */
+
+    .qrcode h2{
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      color: #6B7280; /* text-gray-500 */
+      font-size: 29px;
+    }
+    
+   .imgQR{
+align-items: center;
+
+   }
+
+   .duvida-header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: center; /* Centraliza horizontalmente */
+  }
+  
+  .duvida-header a {
+    margin-left: 10px; /* Adiciona um espaço entre o texto e o botão */
+    margin-bottom: 45px;
+  }
+  
+
+  /* documento */
+/* Centralizar o título */
+.contratoh1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Container principal */
+.containercontract {
+  background: linear-gradient(135deg, #f0f2f5, #ffffff);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Ajusta a largura do container */
+  max-width: 800px; /* Mantém uma largura máxima */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Coluna da imagem com alinhamento à direita */
+.card.custom-card.custom-card-special {
+  width: auto; /* Mantém o tamanho da imagem em vez de 100% */
+  margin-left: auto; /* Move a imagem para a direita */
+  margin-bottom: 20px;
+}
+
+.custom-card-special img {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+/* Responsividade da imagem */
+.img-fluid.rounded {
+  width: 100%; /* Mantém o tamanho natural da imagem */
+  height: 100%; /* Ajusta conforme o conteúdo */
+  max-width: 900%; /* Limita a largura da imagem em 80% */
+  cursor: pointer;
+}
+
+
+
+/* Modal */
+.modal-body img {
+  max-width: 90%; /* A imagem ocupará no máximo 90% da largura da tela */
+  max-height: 90vh; /* A imagem terá no máximo 90% da altura da viewport */
+  object-fit: contain;
+}
+
+.col-12.col-md-8.textocontrato.text-center{
+
+  text-align: center;
+  font-size: 20px; /* Experimente um valor menor */
+  margin-top: 60px; /* Ajuste conforme necessário */
+}
+
+
+/* SIMULAÇÃO */
+
+.intropaga{
+
+
+}
+.fluxepagamento{
+
+font-size: 20px;
+font-weight: 600;
+margin-bottom: 20px;
+margin-top: 20px;
+}
+
+.observacoes{
+
+  margin-top: 10px;
+
+  margin-bottom: 30px;
+}
