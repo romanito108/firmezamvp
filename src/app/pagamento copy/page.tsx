@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getPropertyDetail, PropertyDetailType,
-         getWalletDetail, WalletDetailType } from '../../services/web3services';
+import { getPropertyDetail, PropertyDetailType } from '../../services/web3services';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "next/image";
 import Desconnected from '../components/desconnected';
@@ -13,48 +12,30 @@ interface PropertyDetails {
   goal: number;
 }
 
-
 export default function Page() {
-
   const [propertyDetail, setPropertyDetail] = useState<PropertyDetailType | null>(null);
-  const [walletDetail, setWalletDetail] = useState<WalletDetailType | null>(null);
-  const [buyerAddress, setBuyerAddress] = useState<string | null>(null);
   const [wallet, setWallet] = useState<string | null>(null);
-  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const storedWallet = localStorage.getItem("wallet");
     if (storedWallet && !wallet) {
       setWallet(storedWallet);
     }
-  
+
     async function fetchData() {
       try {
-          const details = await getPropertyDetail(1);
-          setPropertyDetail(details);
-          setBuyerAddress(details.buyerAddress)
-
-          if (details.buyerAddress) {
-            try {
-              const walletDetails = await getWalletDetail(1);
-              setWalletDetail(walletDetails);
-            } catch (err) {
-              setError(err instanceof Error ? err.message : "Erro ao buscar dados.");
-            }
-          }
-
+        const details = await getPropertyDetail(1); // Use the correct ID here
+        setPropertyDetail(details);
       } catch (error) {
-        console.error("Erro ao obter detalhes da propriedade:", error);
+        console.error('Erro ao obter detalhes da propriedade:', error);
       }
-  
-    
     }
-  
+
     if (wallet) {
       fetchData();
     }
   }, [wallet]);
-  
+
   if (!wallet) {
     return <Desconnected />;
   }
@@ -80,13 +61,12 @@ export default function Page() {
   const propertyValue = parseFloat(propertyDetail?.propertyValue || "0");
 
   // Formatar o valor da propriedade
-  function formatCurrency(value: number): string {
+  const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(value);
-  }
-  
+  };
 
   // Se o valor for inválido (NaN), usar 0
   const validPropertyValue = isNaN(propertyValue) ? 0 : propertyValue;
@@ -94,8 +74,6 @@ export default function Page() {
   const percentageSold = parseFloat(propertyDetail?.percentageSold || "0");
 
   // Se nada foi comprado, o valor pago é 0
-  //const paidValue = percentageSold > 0 ? (percentageSold / 100) * validPropertyValue : 0;
-
   const paidValue = percentageSold > 0 ? (percentageSold / 100) * validPropertyValue : 0;
 
   // Calcular o valor restante
@@ -130,10 +108,7 @@ export default function Page() {
               <div className="card-body custom-card-body">
                 <h5 className="card-title custom-card-title">Total adquirido do imóvel</h5>
                 <h3 className="card-text custom-card-text">
-                {walletDetail?.buyerQtdTokens && !isNaN(Number(walletDetail.buyerQtdTokens))
-                  ? formatCurrency(Number(walletDetail.buyerQtdTokens)*1000) 
-                  : formatCurrency(0)}
-                  <span className="total-word">  total </span>
+                  {paidValue ? formatCurrency(paidValue) : formatCurrency(0)} <span className="total-word"> total </span>
                 </h3>
                 <span className="total-word">
                   Nesse ritmo, você comprará o imóvel em 1 ano{" "}
@@ -142,7 +117,7 @@ export default function Page() {
                 <div className="barrinha">
                   <div className="gauge">
                     <div className="gauge__body">
-                      <div className="gauge__fill" style={{ width: `${walletDetail?.buyerPercentage}%` }}></div>
+                      <div className="gauge__fill" style={{ width: `${percentPurchased}%` }}></div>
                       <div className="gauge__cover"></div>
                     </div>
                     <Image width={50} height={50} className="icon" src="/Icon.png" alt="Ícone" />
@@ -151,18 +126,12 @@ export default function Page() {
                     <div className="dados">
                       <div className="acima">
                         {/* Valor pago (se nada foi comprado, é 0) */}
-                        <div className="quantotem"> 
-                          {walletDetail?.buyerQtdTokens && !isNaN(Number(walletDetail.buyerQtdTokens))
-                        ? formatCurrency(Number(walletDetail.buyerQtdTokens)*1000) 
-                        : formatCurrency(0)}
-                        </div>
+                        <div className="quantotem">{formatCurrency(paidValue)}</div>
                         {/* Valor total do imóvel, que nunca muda */}
-                        <div className="quantofalta">            
-                            {propertyDetail?.propertyValue}
-                        </div>
+                        <div className="quantofalta">{formatCurrency(validPropertyValue)}</div>
                       </div>
                       {/* Percentual adquirido */}
-                      <div className="porcentagem">{walletDetail?.buyerPercentage}</div>
+                      <div className="porcentagem">{percentPurchased.toFixed(2)}%</div>
                       <div className="faltapravc">do imóvel já pertence a você</div>
                     </div>
                   </div>

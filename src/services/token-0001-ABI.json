@@ -107,6 +107,28 @@
         "type": "error"
     },
     {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }
+        ],
+        "name": "OwnableInvalidOwner",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "OwnableUnauthorizedAccount",
+        "type": "error"
+    },
+    {
         "anonymous": false,
         "inputs": [
             {
@@ -193,35 +215,17 @@
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "admin",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "sellerAddress",
+                "name": "previousOwner",
                 "type": "address"
             },
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "buyerAddress",
+                "name": "newOwner",
                 "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "timestamp",
-                "type": "uint256"
             }
         ],
-        "name": "PropertyPaid",
+        "name": "OwnershipTransferred",
         "type": "event"
     },
     {
@@ -246,7 +250,44 @@
                 "type": "address"
             },
             {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            }
+        ],
+        "name": "PropertyPaid",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
                 "indexed": true,
+                "internalType": "address",
+                "name": "admin",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "sellerAddress",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "buyerAddress",
+                "type": "address"
+            },
+            {
+                "indexed": false,
                 "internalType": "uint256",
                 "name": "tokenId",
                 "type": "uint256"
@@ -495,7 +536,7 @@
                         "type": "uint256"
                     }
                 ],
-                "internalType": "struct FirmezaToken10.PropertyWallets",
+                "internalType": "struct FirmezaToken.PropertyWallets",
                 "name": "sellerDetails",
                 "type": "tuple"
             },
@@ -522,7 +563,7 @@
                         "type": "uint256"
                     }
                 ],
-                "internalType": "struct FirmezaToken10.PropertyWallets",
+                "internalType": "struct FirmezaToken.PropertyWallets",
                 "name": "buyerDetails",
                 "type": "tuple"
             }
@@ -660,22 +701,10 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "propertyShares",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -810,6 +839,19 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {

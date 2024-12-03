@@ -23,6 +23,7 @@ export default function WalletDetail({ sellerAddress, buyerAddress, tokenId }: W
     if (storedWallet && !wallet) {
       setWallet(storedWallet);
     }
+
     const fetchData = async () => {
 
       try {

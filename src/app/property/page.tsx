@@ -72,6 +72,7 @@ export default function MainPage() {
         {sellerAddress && buyerAddress && (
           <div className="bg-white rounded-lg shadow-md p-6 mb-4">
             <div className="segundacaixa">
+            
             <WalletDetail sellerAddress={sellerAddress} buyerAddress={buyerAddress} tokenId={tokenId} />
             </div>
             <div className="mt-6 overflow-x-auto">
