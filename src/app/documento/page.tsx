@@ -108,12 +108,12 @@ export default function Page2(): JSX.Element {
           multiple
           onChange={handleFileChange}
         />
-        <button
+        {/* <button
           className="btn btn-primary"
           onClick={() => document.getElementById('fileUpload')?.click()}
         >
           Fazer Upload de Documento
-        </button>
+        </button> */}
         {error && <p className="text-danger mt-2">{error}</p>}
       </div>
 
@@ -126,19 +126,12 @@ export default function Page2(): JSX.Element {
                 <div className="pdf-container">
                   <p>Arquivo PDF</p>
                   <embed src={fileUrl} type="application/pdf" width="600" height="400" />
-                  <button className="btn btn-danger mt-2" onClick={() => handleRemoveFile(fileUrl!)}>Remover PDF</button>
+                  {/* <button className="btn btn-danger mt-2" onClick={() => handleRemoveFile(fileUrl!)}>Remover PDF</button> */}
                 </div>
               ) : (
                 <div className="image-container">
-                  <Image
-                    src={fileUrl}
-                    alt="Imagem do Documento"
-                    className="img-fluid mt-3 cursor-pointer"
-                    width={300}
-                    height={300}
-                    onClick={() => handleImageClick(fileUrl)} // Clique para abrir no modal
-                  />
-                  <button className="btn btn-danger mt-2" onClick={() => handleRemoveFile(fileUrl!)}>Remover Imagem</button>
+             
+                  {/* <button className="btn btn-danger mt-2" onClick={() => handleRemoveFile(fileUrl!)}>Remover Imagem</button> */}
                 </div>
               )}
             </div>
@@ -158,13 +151,13 @@ export default function Page2(): JSX.Element {
           <div className="modal-dialog modal-fullscreen">
             <div className="modal-content bg-dark">
               <div className="modal-header border-0">
-                <button
+                {/* <button
                   type="button"
                   className="btn-close btn-close-white"
                   data-bs-dismiss="modal"
                   aria-label="Fechar"
                   onClick={handleCloseModal}
-                ></button>
+                ></button> */}
               </div>
               <div className="modal-body d-flex justify-content-center align-items-center">
                 {modalFileUrl.endsWith('.pdf') ? (
