@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'next/image';
 import Head from 'next/head';
+import Script from 'next/script';
 
 export default function Page2(): JSX.Element {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -88,14 +89,10 @@ export default function Page2(): JSX.Element {
 
   return (
     <div>
-      <Head>
-        <title>Contrato</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          strategy="afterInteractive"
-        />
-      </Head>
+    <Script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  strategy="afterInteractive"
+/>
 
       <div className="contratoh1">
         <h1>Contrato</h1>
