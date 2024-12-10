@@ -752,7 +752,7 @@ margin-top: 10px;
 }
 
 .segundacaixa span{
-  font-size: 18px;
+  font-size: 17px;
   color: rgba(8, 10, 46, 0.968);
 
 
@@ -761,6 +761,30 @@ margin-top: 10px;
 .terceiracaixa p{
 
   font-size: 17px;
+}
+
+
+.mt-6.overflow-x-auto {
+  background-color: #f8f9fa; 
+  padding: 16px; 
+  border-radius: 8px; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+.text-lg.font-semibold.text-center.mb-4 {
+  color:#2E3AFF
+}
+
+.bg-gray-200{
+
+  color: #17086f;
+}
+
+
+.terceiracaixa tbody tr {
+  background-color: #f5f5f5 !important;
+  color:  #2c2c2c !important; 
 }
 
 /* Responsividade */
@@ -777,7 +801,7 @@ margin-top: 10px;
   .custom-class-property span {
    
   
-    font-size: 9px; /* Tamanho do texto */
+    font-size: 18px; /* Tamanho do texto */
   color: #2c2c2c;     /* Verde */
  
 

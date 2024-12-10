@@ -142,7 +142,12 @@ export default function Page() {
                 <div className="barrinha">
                   <div className="gauge">
                     <div className="gauge__body">
-                      <div className="gauge__fill" style={{ width: `${walletDetail?.buyerPercentage}%` }}></div>
+                    <div
+        className="gauge__fill"
+        style={{
+          transform: `rotate(${(percentPurchased / 100) * 180}deg)`,
+        }}
+      ></div>
                       <div className="gauge__cover"></div>
                     </div>
                     <Image width={50} height={50} className="icon" src="/Icon.png" alt="Ícone" />
@@ -185,13 +190,13 @@ export default function Page() {
                 </h3>
                 <span className="total-word">
                   Seu aluguel já reduziu{" "}
-                  {Math.round(percentPurchased)}%
+                
                   <Image width={50} height={50} className="alert" src="/alert-circle.png" alt="Alerta" />
                 </span>
                 <div className="barrinha">
                   <div className="gauge">
                     <div className="gauge__body">
-                      <div className="gauge__fill" style={{ width: `${percentPurchased}%` }}></div>
+                      <div className="gauge__fill"></div>
                       <div className="gauge__cover"></div>
                     </div>
                     <Image width={20} height={20} className="icon" src="/Icon2.png" alt="Ícone" />
@@ -200,12 +205,12 @@ export default function Page() {
                     <div className="dados">
                       <div className="acima">
                         {/* Valor pago (se nada foi comprado, é 0) */}
-                        <div className="quantotem">{formatCurrency(paidValue)}</div>
+                        <div className="quantotem">0</div>
                         {/* Valor total do imóvel, que nunca muda */}
-                        <div className="quantofalta">{formatCurrency(validPropertyValue)}</div>
+                        <div className="quantofalta">0</div>
                       </div>
                       {/* Percentual adquirido */}
-                      <div className="porcentagem">{percentPurchased.toFixed(2)}%</div>
+                      <div className="porcentagem">0%</div>
                       <div className="faltapravc">do imóvel já pertence a você</div>
                     </div>
                   </div>
