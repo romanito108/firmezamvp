@@ -185,7 +185,7 @@ export default function Page() {
               <div className="card-body">
                 <h5 className="card-title custom-card-title">Seu aluguel</h5>
                 <h3 className="card-text custom-card-text">
-                  {formatCurrency(validPropertyValue)}{" "}
+                  R$800,00
                   <span className="total-word"> total </span>
                 </h3>
                 <span className="total-word">
