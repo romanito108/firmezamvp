@@ -211,7 +211,7 @@ export default function Page() {
                       </div>
                       {/* Percentual adquirido */}
                       <div className="porcentagem">0%</div>
-                      <div className="faltapravc">do imóvel já pertence a você</div>
+                      <div className="faltapravc">de economia de todos os meses!</div>
                     </div>
                   </div>
                 </div>
