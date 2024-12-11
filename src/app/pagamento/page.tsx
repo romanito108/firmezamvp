@@ -185,11 +185,11 @@ export default function Page() {
               <div className="card-body">
                 <h5 className="card-title custom-card-title">Seu aluguel</h5>
                 <h3 className="card-text custom-card-text">
-                  R$800,00
+                  R$5,00
                   <span className="total-word"> total </span>
                 </h3>
                 <span className="total-word">
-                  Seu aluguel já reduziu{" "}
+                  Seu aluguel inicial era de R$800,00
                 
                   <Image width={50} height={50} className="alert" src="/alert-circle.png" alt="Alerta" />
                 </span>
@@ -210,7 +210,7 @@ export default function Page() {
                         <div className="quantofalta">0</div>
                       </div>
                       {/* Percentual adquirido */}
-                      <div className="porcentagem">0%</div>
+                      <div className="porcentagem">97,97%</div>
                       <div className="faltapravc">de economia de todos os meses!</div>
                     </div>
                   </div>
