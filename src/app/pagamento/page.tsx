@@ -13,6 +13,38 @@ interface PropertyDetails {
   goal: number;
 }
 
+function calculateRentAndAcquisition(
+  initialRent: number,
+  acquisitionPerMonth: number,
+  monthsPaid: number,
+  totalPropertyValue: number
+) {
+  const data = [];
+  let currentRent = initialRent;
+
+  for (let month = 0; month <= monthsPaid; month++) {
+    const acquisition = acquisitionPerMonth * month;
+    const percentageAcquired = (acquisition / totalPropertyValue) * 100;
+    data.push({
+      month,
+      rent: currentRent,
+      acquisition,
+      percentageAcquired,
+    });
+    // Reduz o aluguel para o próximo mês
+    currentRent = Math.max(0, currentRent - 5);
+  }
+
+  return data;
+}
+
+
+function calculateReducedRent(
+  initialRent: number,
+  percentageAcquired: number
+) {
+  return initialRent * (1 - percentageAcquired / 100);
+}
 
 export default function Page() {
 
@@ -104,6 +136,19 @@ export default function Page() {
   // Calcular o percentual adquirido
   const percentPurchased = percentageSold;
 
+
+
+
+  const initialRent = 800; // Aluguel inicial
+  const validPercentageAcquired = isNaN(percentPurchased)
+    ? 0
+    : percentPurchased; // Percentual adquirido válido
+
+  const reducedRent = calculateReducedRent(
+    initialRent,
+    validPercentageAcquired
+  );
+
   return (
     <div>
       {propertyDetail ? (
@@ -185,43 +230,60 @@ export default function Page() {
               <div className="card-body">
                 <h5 className="card-title custom-card-title">Seu aluguel</h5>
                 <h3 className="card-text custom-card-text">
-                  R$5,00
-                  <span className="total-word"> total </span>
+                  {formatCurrency(reducedRent)}{" "}
+                  <span className="total-word"> atual </span>
                 </h3>
                 <span className="total-word">
-                  Seu aluguel inicial era de R$800,00
-                
-                  <Image width={50} height={50} className="alert" src="/alert-circle.png" alt="Alerta" />
+                  Seu aluguel foi reduzido com base no percentual adquirido{" "}
+                  <Image
+                    width={50}
+                    height={50}
+                    className="alert"
+                    src="/alert-circle.png"
+                    alt="Alerta"
+                  />
                 </span>
                 <div className="barrinha">
                   <div className="gauge">
                     <div className="gauge__body">
-                      <div className="gauge__fill"></div>
+                      <div
+                        className="gauge__fill"
+                        style={{
+                          transform: `rotate(${(validPercentageAcquired / 100) * 180}deg)`,
+                        }}
+                      ></div>
                       <div className="gauge__cover"></div>
                     </div>
-                    <Image width={20} height={20} className="icon" src="/Icon2.png" alt="Ícone" />
+                    <Image
+                      width={50}
+                      height={50}
+                      className="icon"
+                      src="/Icon.png"
+                      alt="Ícone"
+                    />
                   </div>
                   <div className="barraP">
                     <div className="dados">
                       <div className="acima">
-                        {/* Valor pago (se nada foi comprado, é 0) */}
-                        <div className="quantotem">0</div>
-                        {/* Valor total do imóvel, que nunca muda */}
-                        <div className="quantofalta">0</div>
+                        <div className="quantotem">{formatCurrency(reducedRent)}</div>
+                        <div className="quantofalta">   {propertyDetail?.propertyValue}</div>
                       </div>
-                      {/* Percentual adquirido */}
-                      <div className="porcentagem">97,97%</div>
-                      <div className="faltapravc">de economia de todos os meses!</div>
+                      <div className="porcentagem">
+                        {validPercentageAcquired.toFixed(2)}%
+                      </div>
+                      <div className="faltapravc">do imóvel já pertence a você</div>
                     </div>
                   </div>
                 </div>
-                <a href="/token3" className="btn btn-primary blue custom-button2">
+                <a
+                  href="/token3"
+                  className="btn btn-primary blue custom-button2"
+                >
                   Pagar aluguel
                 </a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
